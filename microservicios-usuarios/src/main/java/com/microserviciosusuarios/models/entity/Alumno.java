@@ -2,34 +2,29 @@ package com.microserviciosusuarios.models.entity;
 
 import java.util.Date;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.Table;
+
 
 //persistencia mapeada a una tabla
-@Entity
+@javax.persistence.Entity
 //opcional por que se toma el nombre de la clase en singular
 //
-@Table(name="alumnos")
+@javax.persistence.Table(name="alumnos")
 public class Alumno {
 
-	@Id //llave
+	@javax.persistence.Id //llave
 	//auto incremental,identity, sequence,
 	//PARA POSGREST, identity, sequence,
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@javax.persistence.GeneratedValue (strategy = javax.persistence.GenerationType.IDENTITY)
 	private Long id;
 	//NO ES NECESARIO AGREGAR @COLUM YA QUE SE LLAMA IGUAL, SOLO SI QUEREMOS CONFIGURAR PARAMETROS VARCAHR SIZE, ETC
 	private String nombre;
 	private String apellido;
 	private String email;
 	
-	@Column(name = "create_at") //asi se separa en sql o bd
+	@javax.persistence.Column(name = "create_at") //asi se separa en sql o bd
+	@javax.persistence.Temporal(javax.persistence.TemporalType.TIMESTAMP)//FECHA COMPLETA Y HORA
 	private Date createAt;//import java util
-	@PrePersist
+	@javax.persistence.PrePersist
 	public void prePersist() {
 		this.createAt = new Date();
 	}
@@ -76,4 +71,3 @@ public class Alumno {
 	
 	
 }
-
