@@ -1,11 +1,6 @@
 package com.microserviciosusuarios.services;
 
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.microservicios.commons.services.CommonServiceImp;
 import com.microserviciosusuarios.models.entity.Alumno;
 import com.microserviciosusuarios.models.repository.AlumnoRepository;
