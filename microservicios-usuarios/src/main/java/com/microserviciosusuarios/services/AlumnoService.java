@@ -1,15 +1,20 @@
 package com.microserviciosusuarios.services;
-import java.util.Optional;
+
+import com.microservicios.commons.services.CommonService;
 import com.microserviciosusuarios.models.entity.Alumno;
 
+//import java.util.Optional;
+//import com.microserviciosusuarios.models.entity.Alumno;
+
 //ES EL CONTRATO
-public interface AlumnoService {
- public Iterable<Alumno> findAll();
+//FASE 2 CON EL GENERAL mandar ENTITY YA GENERADO
+public interface AlumnoService extends CommonService<Alumno>{
+// public Iterable<Alumno> findAll();
  
  //MANEJA OPCIONAL DE ALUMNO, RESULTADO SI EXISTE O NO
- public Optional<Alumno>findById(Long id);
+ //public Optional<Alumno>findById(Long id);
  
  //Retorna objeto Alumno contendra id (Recibealimno y lo retorna lo cguardado)
- public Alumno save(Alumno alumno);
- public void deleteById(Long id);
+ //public Alumno save(Alumno alumno);
+ //public void deleteById(Long id);
 }

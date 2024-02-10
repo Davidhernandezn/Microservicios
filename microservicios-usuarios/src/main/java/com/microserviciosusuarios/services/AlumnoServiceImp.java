@@ -6,16 +6,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.microservicios.commons.services.CommonServiceImp;
 import com.microserviciosusuarios.models.entity.Alumno;
 import com.microserviciosusuarios.models.repository.AlumnoRepository;
 
 //crea componentes de spring debemos indicarlo
 //para despues inyectarlo
-@Service
-public class AlumnoServiceImp implements AlumnoService {
+@Service //NECESARIO PARA MANDAR EL REGISTRO A SPRINT COMO COMPONENTE
+//public class AlumnoServiceImp implements AlumnoService {
 
-	@Autowired //para inyectar dependencias
-	private AlumnoRepository repository;//Tipo alumon repo y agregamos nombre
+//IMPLEMENTA ALUMNO SERVICE AHORA NECESITAMOS QUE EL SERVICEIMP HEREDE DEL PROYECTO GENERAL
+public class AlumnoServiceImp extends CommonServiceImp<Alumno, AlumnoRepository> implements AlumnoService {
+//E = ALUMNO
+//CRUD REPOSITORI = AlumnoRepository <no es necesario agregar los tipos>
+	
+	//NO NECESARIO YA QUE SE TIENE EN LA PARTE GENERAL
+	//@Autowired //para inyectar dependencias
+	//private AlumnoRepository repository;//Tipo alumon repo y agregamos nombre
+	
+	/** TODO ESTO YA NO ES NECESARIO YA QUE SE TIENE EN LA PARTE GENERAL
 	@Override
 	//METODOS DE CONSULTA DE SOLO LECTURA
 	@Transactional(readOnly = true) //de spring framework
@@ -44,5 +53,5 @@ public class AlumnoServiceImp implements AlumnoService {
 		// TODO Auto-generated method stub
 repository.deleteById(id);
 	}
-
+**/
 }
