@@ -55,6 +55,13 @@
 			<artifactId>commons-microservicios</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		
+				<!--PARA ENTIDAD ALUMNO-->
+		<dependency>
+			<groupId>com.microservicios.commons.alumnos</groupId>
+			<artifactId>commons-alumnos</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>

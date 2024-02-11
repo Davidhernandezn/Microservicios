@@ -68,6 +68,27 @@ public class Alumno {
 	public void setCreateAt(Date createAt) {
 		this.createAt = createAt;
 	}
+
 	
 	
+	//SOBRE ESCRIBIR UN METODO	de la clase object
+	@Override
+	public boolean equals(Object obj) {
+	//PREGUATMOS SI LA INSTANCIA ES IHGUAL AL OBJECTE QUE PASAMOS POR ARGUMENTO EN EL API COLLECTION EN METODO REMOVE
+	if(this == obj) {
+		return true;//LO ENCUENTRA Y LO ELIMINA
+	}
+	//VALIDAR QUE LA INSTANCIA SEA UN OBJETO DE ALUMNO
+		if(!(obj instanceof Alumno)) {
+			return false;
+		}
+	
+	//VALIDAR SI LA INSTANCIA ES DISTINTA PERO EL OBJETO ES EL MISMO POR EL ID
+		//cast de obj a tipo alumno para comparar ID
+		Alumno a = (Alumno)obj;
+		//SI CUMPLE LO ELIMINA
+		return this.id != null && this.id.equals(a.getId());
+	}
+	
+
 }
