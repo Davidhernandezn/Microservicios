@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.microservicios.commons.alumnos.models.entity.Alumno;
 import com.microservicios.commons.controllers.CommonController;
-import com.microserviciosusuarios.models.entity.Alumno;
 import com.microserviciosusuarios.services.AlumnoService;
 
 @RestController//contrrolador de tipo rest para restfull, para Json o XML

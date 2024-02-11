@@ -1,7 +1,7 @@
 package com.microserviciosusuarios.services;
 
+import com.microservicios.commons.alumnos.models.entity.Alumno;
 import com.microservicios.commons.services.CommonService;
-import com.microserviciosusuarios.models.entity.Alumno;
 
 //import java.util.Optional;
 //import com.microserviciosusuarios.models.entity.Alumno;

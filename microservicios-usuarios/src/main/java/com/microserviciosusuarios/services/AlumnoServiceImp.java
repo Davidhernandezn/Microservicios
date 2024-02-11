@@ -1,8 +1,9 @@
 package com.microserviciosusuarios.services;
 
 import org.springframework.stereotype.Service;
+
+import com.microservicios.commons.alumnos.models.entity.Alumno;
 import com.microservicios.commons.services.CommonServiceImp;
-import com.microserviciosusuarios.models.entity.Alumno;
 import com.microserviciosusuarios.models.repository.AlumnoRepository;
 
 //crea componentes de spring debemos indicarlo

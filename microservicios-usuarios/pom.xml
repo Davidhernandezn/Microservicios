@@ -51,7 +51,7 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>
@@ -66,10 +66,16 @@ esto se habilita de forma automatica pero es mejor habilitarlo de manera
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
-
+		<!--PARA MANEJAR LOS MICROSERVICIOS DE MANERA GENERAL-->
 		<dependency>
 			<groupId>com.microservicios.commons</groupId>
 			<artifactId>commons-microservicios</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<!--PARA ENTIDAD ALUMNO-->
+		<dependency>
+			<groupId>com.microservicios.commons.alumnos</groupId>
+			<artifactId>commons-alumnos</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
