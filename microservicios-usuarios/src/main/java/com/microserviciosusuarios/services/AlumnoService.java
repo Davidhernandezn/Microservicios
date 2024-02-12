@@ -1,5 +1,7 @@
 package com.microserviciosusuarios.services;
 
+import java.util.List;
+
 import com.microservicios.commons.alumnos.models.entity.Alumno;
 import com.microservicios.commons.services.CommonService;
 
@@ -17,4 +19,9 @@ public interface AlumnoService extends CommonService<Alumno>{
  //Retorna objeto Alumno contendra id (Recibealimno y lo retorna lo cguardado)
  //public Alumno save(Alumno alumno);
  //public void deleteById(Long id);
+	
+	
+//AGREGAMOS METODO DEL REPOSITORY PARA BUSCAR	
+public List<Alumno> findByNombreOrApellido(String termino);
+
 }

@@ -1,6 +1,9 @@
 package com.microserviciosusuarios.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.microservicios.commons.alumnos.models.entity.Alumno;
 import com.microservicios.commons.services.CommonServiceImp;
@@ -13,6 +16,15 @@ import com.microserviciosusuarios.models.repository.AlumnoRepository;
 
 //IMPLEMENTA ALUMNO SERVICE AHORA NECESITAMOS QUE EL SERVICEIMP HEREDE DEL PROYECTO GENERAL
 public class AlumnoServiceImp extends CommonServiceImp<Alumno, AlumnoRepository> implements AlumnoService {
+
+	@Override
+	@Transactional(readOnly = true) //IMPORTAR DE SPRING FRAMEWORK, señalar que solo es de consulta
+	public List<Alumno> findByNombreOrApellido(String termino) {
+		// TODO Auto-generated method stub
+		return repository.findByNombreOrApellido(termino);//AGREGAR EL RETURN
+	}
+	
+	
 //E = ALUMNO
 //CRUD REPOSITORI = AlumnoRepository <no es necesario agregar los tipos>
 	
