@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.google.common.base.Optional;
 import com.microservicios.commons.alumnos.models.entity.Alumno;
 import com.microservicios.commons.controllers.CommonController;
 import com.microservicios.cursos.models.entity.Curso;
