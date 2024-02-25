@@ -19,6 +19,14 @@
 		<spring-cloud.version>2021.0.8</spring-cloud.version>
 	</properties>
 	<dependencies>
+
+		<dependency>
+			<!--PARA USAR ESTA LIBRERIA EN UN MICROSERVICIO y en su relacion - cursos-->
+			<groupId>com.commons.examenes</groupId>
+			<artifactId>commons-examenes</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<!--PARA USAR ESTA LIBRERIA EN UN MICROSERVICIO-->
+		</dependency>
 		<!--LIBRERIA COMMONS-->
 		<dependency>
 			<groupId>com.microservicios.commons</groupId>

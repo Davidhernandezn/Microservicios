@@ -1,4 +1,4 @@
-package com.microservicios.examenes.models.entity;
+package com.commons.examenes.models.entity;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,6 +17,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+//IMPORTAL MANUALMENTE YA QUE SE IMPORTA CON SPRING WEB 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 //DECLARARLA COMO ENTITY

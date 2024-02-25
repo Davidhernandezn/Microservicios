@@ -20,6 +20,13 @@
 	</properties>
 	<dependencies>
 		<dependency>
+			<!--PARA USAR ESTA LIBRERIA EN UN MICROSERVICIO-->
+			<groupId>com.commons.examenes</groupId>
+			<artifactId>commons-examenes</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<!--PARA USAR ESTA LIBRERIA EN UN MICROSERVICIO-->
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
@@ -55,8 +62,8 @@
 			<artifactId>commons-microservicios</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		
-				<!--PARA ENTIDAD ALUMNO-->
+
+		<!--PARA ENTIDAD ALUMNO-->
 		<dependency>
 			<groupId>com.microservicios.commons.alumnos</groupId>
 			<artifactId>commons-alumnos</artifactId>

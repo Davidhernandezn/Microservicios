@@ -1,8 +1,8 @@
 package com.microservicios.examenes.services;
 import org.springframework.stereotype.Service;
 
+import com.commons.examenes.models.entity.Examen;
 import com.microservicios.commons.services.CommonServiceImp;
-import com.microservicios.examenes.models.entity.Examen;
 import com.microservicios.examenes.models.repository.ExamenRepository;
 
 

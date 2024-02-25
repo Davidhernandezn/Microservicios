@@ -1,7 +1,7 @@
 package com.microservicios.examenes.services;
 
+import com.commons.examenes.models.entity.Examen;
 import com.microservicios.commons.services.CommonService;
-import com.microservicios.examenes.models.entity.Examen;
 
 //extender de commons
 public interface ExamenService extends CommonService<Examen>{

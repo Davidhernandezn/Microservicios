@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.commons.examenes.models.entity.Examen;
 import com.microservicios.commons.controllers.CommonController;
-import com.microservicios.examenes.models.entity.Examen;
 import com.microservicios.examenes.services.ExamenService;
 
 @RestController

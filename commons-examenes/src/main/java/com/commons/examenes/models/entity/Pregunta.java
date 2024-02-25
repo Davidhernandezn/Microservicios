@@ -1,4 +1,4 @@
-package com.microservicios.examenes.models.entity;
+package com.commons.examenes.models.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
