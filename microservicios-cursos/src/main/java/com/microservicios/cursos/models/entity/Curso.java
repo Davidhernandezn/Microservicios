@@ -10,12 +10,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.commons.examenes.models.entity.Examen;
 import com.microservicios.commons.alumnos.models.entity.Alumno;
 
 @Entity
@@ -39,18 +41,25 @@ public class Curso {
 	@OneToMany(fetch = FetchType.LAZY)
 	private List<Alumno> alumnos;
 	
+	/*RELACION MANY TO MANY
+	 * UN CURSO PUEDE TENER MUCHOS EXAMENES
+	 * UN EXAMEN PUEDE ESTAR ASOCIADO A MUCHOS CURSOS
+	//ATRIBUTO PARA LA RELACIOM DEL CURSO CON LOS EXAMENES**/
+	@ManyToMany(fetch = FetchType.LAZY)
+	private List<Examen> examenes;
+	
+	
 	//PARA LAS FECHAS
 	@PrePersist
 	public void prePersist() {
 		this.createAt = new Date();
 	}
 	
-	//CONSTRUCTOR ALUMNOS
+	//CONSTRUCTOR ALUMNOS y examen, inicializarlos
 	public Curso() {
 		this.alumnos = new ArrayList<>();
+		this.examenes = new ArrayList<>();//generar su getter and setter
 	}
-
-	
 	
 	public Long getId() {
 		return id;
@@ -104,6 +113,26 @@ public class Curso {
 		// *CREAR ALGORITMO PARA COMPARAR SI UN OBJETO ALUMNO ESTA DENTRO DE LA LISTA*
 		//AHORA YA ESTA EN COMMONS ALUMNOS
 	}
+
+	public List<Examen> getExamenes() {
+		return examenes;
+	}
+
+	public void setExamenes(List<Examen> examenes) {
+		this.examenes = examenes;
+	}
 	
+	//METODO ADD Y REMOVE DE EXAMENES
+	/*EN CURSOS NECESITAMOS EL MICROSERVICIO EXAMENES
+	 *PERO EN EXAMENES NO NECESITAMOS EL CURSO
+	 *POR LO QUE NO NECESITAMOS LA RELACION INVERSA*/
+	public void addExamen(Examen examen) {
+		this.examenes.add(examen);
+	}
+	
+	//necesitamos agregar en commons examenes el equals para eliminar examenes //IR A ENTITY EXAMEN (OVERRIDE)
+	public void removeExamen(Examen examen) {
+		this.examenes.remove(examen);
+	}
 }
 

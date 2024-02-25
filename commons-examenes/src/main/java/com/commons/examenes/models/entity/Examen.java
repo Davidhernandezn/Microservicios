@@ -132,4 +132,26 @@ public class Examen {
 		//this para usar la misma instancia
 		pregunta.setExamen(null);//QUITAR RELACION
 	}
+
+	
+	//PREGUNTAR ID Y VALIDAR POR ID
+	@Override
+	public boolean equals(Object obj) {
+		//PREGUATMOS SI LA INSTANCIA ES IHGUAL AL OBJECTE QUE PASAMOS POR ARGUMENTO EN EL API COLLECTION EN METODO REMOVE
+		if(this == obj) {
+			return true;//LO ENCUENTRA Y LO ELIMINA
+		}
+		//VALIDAR QUE LA INSTANCIA SEA UN OBJETO DE ALUMNO
+			if(!(obj instanceof Examen)) {
+				return false;
+			}
+		
+		//VALIDAR SI LA INSTANCIA ES DISTINTA PERO EL OBJETO ES EL MISMO POR EL ID
+			//cast de obj a tipo alumno para comparar ID
+			Examen a = (Examen)obj;
+			//SI CUMPLE LO ELIMINA
+			return this.id != null && this.id.equals(a.getId());
+	}
+	
+	
 }
