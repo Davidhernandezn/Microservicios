@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.StreamingHttpOutputMessage.Body;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -78,5 +79,11 @@ public class ExamenController extends CommonController<Examen, ExamenService>{
 	@GetMapping("/filtrar/{term}")
 	public ResponseEntity<?> filtrar(@PathVariable String term){
 		return ResponseEntity.ok(service.findByNombre(term));
+	}
+	
+	/*PODEMOS CREAR UN CONTROLADOR NUEVO O AQUI MISMO YA QUE SOLO VAMOS A LISTAR*/
+	@GetMapping("/asignaturas")
+	public ResponseEntity<?> listarAsignaturas(){
+		return ResponseEntity.ok(service.findAllAsignaturas());
 	}
 }

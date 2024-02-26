@@ -1,5 +1,6 @@
 package com.commons.examenes.models.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -42,10 +43,12 @@ public class Asignatura {
 
 	@JsonIgnoreProperties(value = {"padre"}, allowSetters = true)
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "padre", cascade = CascadeType.ALL) //
-	private List<Asignatura> hijos;
-		
-	
-	
+	private List<Asignatura> hijos; //SIMPRE INICIALIZAR EN UN CONSTRUCTOR
+
+	public Asignatura() {
+		this.hijos = new ArrayList<>();
+		// TODO Auto-generated constructor stub
+	}
 
 	public Long getId() {
 		return id;
