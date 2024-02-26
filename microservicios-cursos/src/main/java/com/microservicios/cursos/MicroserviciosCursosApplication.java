@@ -7,8 +7,13 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 //@EnableEurekaClient //OPCIONAL
 @SpringBootApplication
 //TAMBIEN EN SU CLASE PRINCIPAL AGREGARLE ENTITY SCAN DE LA ENTIDAD DESEADA
+/*
+ * Esta anotación le dice a la aplicación dónde buscar clases que 
+ * representan entidades de la base de datos.
+ * */
 @EntityScan({ "com.microservicios.commons.alumnos.models.entity", 
-			  "com.microservicios.cursos.models.entity" })
+			  "com.commons.examenes.models.entity",
+			  "com.microservicios.cursos.models.entity"})
 
 public class MicroserviciosCursosApplication {
 

@@ -139,7 +139,4 @@ public class CursoController extends CommonController<Curso, CursoService> {
 			//GUARDAR EL CURSO CON LOS ALUMNOS ASIGNADOS
 			return ResponseEntity.status(HttpStatus.CREATED).body(this.service.save(dbCurso));
 		}
-		
-		
-
 }
