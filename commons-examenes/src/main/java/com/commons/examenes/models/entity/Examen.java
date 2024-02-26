@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
@@ -57,6 +58,18 @@ public class Examen {
 	
 	private List<Pregunta> preguntas;//COMO ES LIST HAY QUE INICIALIZARLO (HACERLO EN UN CONSTRUCTOR)
 	
+	
+	/*MANY TO ONE - MUCHOS EXAMENES PUEDES ESTAR ASOCIADOS A UNA ASIGNATURA
+	 *GENERAR GETTER AND SETTER
+	 *
+	 *NO NECESITAMOS SABER QUE EXAMENES PERTENECEN A LA ASIGNATURA
+	 *PERO SI QUE DE QUE ASIGNATURA HAY EXAMEN - RELACION INVERSA DEPENDE DEL REQUERIMENTO . AQUI NO NECESARIO
+	 * */
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Asignatura asignatura;
+	
+	
+	
 	public Examen() {
 		//inicializamos array list
 		this.preguntas = new ArrayList<>();
@@ -95,6 +108,15 @@ public class Examen {
 	//GET A SET DE LA NUEVA PROPIEDAD AGREGADA
 	public List<Pregunta> getPreguntas() {
 		return preguntas;
+	}
+	
+
+	public Asignatura getAsignatura() {
+		return asignatura;
+	}
+
+	public void setAsignatura(Asignatura asignatura) {
+		this.asignatura = asignatura;
 	}
 
 	//ERROR - VALIDAR QUE AL ASIGNAR PREGUNTA LO ASIGNE A EXAMEN TAMBIEN (RELACION INVERSA)
