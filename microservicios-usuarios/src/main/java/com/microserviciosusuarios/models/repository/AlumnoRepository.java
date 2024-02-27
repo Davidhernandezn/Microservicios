@@ -2,11 +2,17 @@ package com.microserviciosusuarios.models.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
+//import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.microservicios.commons.alumnos.models.entity.Alumno;
 //DESPUES DE EXTENDS INDICAMOS CLASE ENTITY Y TIPO DE LA ID
-public interface AlumnoRepository extends CrudRepository<Alumno, Long> {
+//public interface AlumnoRepository extends CrudRepository<Alumno, Long> {
+
+/*PAGINACION
+ * cambiar a PagingAndSortingRepository*/
+public interface AlumnoRepository extends PagingAndSortingRepository<Alumno, Long> {
+
 //podemos implementar nuestros propios metodos
 	
 	//HACER UN METODO PERZONALIZADO POR NOMBRE DE METODO O UN QUERY

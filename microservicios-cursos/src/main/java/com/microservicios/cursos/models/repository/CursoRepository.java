@@ -1,12 +1,13 @@
 package com.microservicios.cursos.models.repository;
 
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
+//import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.microservicios.cursos.models.entity.Curso;
 
 //NOES NECESARIO AGREGAR UNA ANORACION YA QUE ES UN COMPONENTE SPRING Y SE PUEDE INYECTAR
-public interface CursoRepository extends CrudRepository<Curso, Long>{
+public interface CursoRepository extends PagingAndSortingRepository<Curso, Long>{
 
 	//METODO PERZONALIZADO
 	//RETORNAR CURSO ALIAS C Y USAR JOIN, USAR FECTH PARA POBLAR EL CURSO CON LA LISTA DE ALUMNOS EN UNA SOLA CONSULTA

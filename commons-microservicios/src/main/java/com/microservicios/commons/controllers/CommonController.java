@@ -3,6 +3,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -32,6 +33,19 @@ public class CommonController <E, S extends CommonService<E>>{
 		return ResponseEntity.ok().body(service.findAll());//retornar de forma statica
 	}
 
+	
+	//PARA PAGINACION, usar springframework domain
+	/*INTERNAMENTE NECESITAMOS ENVIAR PARAMETROS DEL REQUEST Y URL , 
+	 * - PARAMETRO 1 ENVIAR NUMERO PAGINA COMIENXA EN 0
+	 * - PARAMETRO 2 ES EL SIZE TAMAÑO O CANTIDAD DE REGISTROS A MMOSTRAR EN LA PAGINA 
+	 * */
+	@GetMapping("/pagina") //PERMITE MAPEAR URL AL METODO, DECIMOS QUE ES LA RAIZ
+	//? PARA CUALQUIER TIPO
+	public ResponseEntity<?> listar(Pageable pageable){
+		return ResponseEntity.ok().body(service.findAll(pageable));//retornar de forma statica
+	}
+	
+	
 	//para buscar por el ID usamos whycat parametro de la ruta porque irá cambiando
 	@GetMapping("/{id}")
 	//Spring lo extrae con path variable

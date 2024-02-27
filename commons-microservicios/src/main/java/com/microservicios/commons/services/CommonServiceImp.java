@@ -3,8 +3,11 @@ package com.microservicios.commons.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+//import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
+//import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
@@ -16,7 +19,9 @@ import org.springframework.transaction.annotation.Transactional;
 //R solo es un nombre
 //MI CLASE entity ya no es alumno si no E
 //CrudRepository ESTA ENLAZDO CON E
-public class CommonServiceImp <E, R extends CrudRepository<E,Long>> implements CommonService<E> {
+
+//SI USAREMOS PAGINACION, DEBEMOS HEREDAR DE PagingAndSortingRepository Y YA NO DE CURDREP.. 
+public class CommonServiceImp <E, R extends PagingAndSortingRepository<E,Long>> implements CommonService<E> {
 
 	@Autowired //para inyectar dependencias
 	//USAR PROTECTED PARA REUTILZIAR EN LA CLASES HIJAS COMO ALUMNOS 
@@ -49,6 +54,15 @@ public class CommonServiceImp <E, R extends CrudRepository<E,Long>> implements C
 	public void deleteById(Long id) {
 		// TODO Auto-generated method stub
 repository.deleteById(id);
+	}
+
+	
+	//PARA PAGINACION
+	@Override
+	@Transactional(readOnly = true)
+	public Page<E> findAll(Pageable pageable) {
+		// TODO Auto-generated method stub
+		return repository.findAll(pageable);
 	}
 
 }
