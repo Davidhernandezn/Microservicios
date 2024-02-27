@@ -1,8 +1,12 @@
 package com.microservicios.commons.controllers;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,7 +50,12 @@ public class CommonController <E, S extends CommonService<E>>{
 	@PostMapping
 	//INDICAR DE DONDE VIENE EL DATO QUE DEBEMOS PERSISTIR, HACER CONSULTAS
 	//EL JSON SE POBLA EN ALUMNO, SI SON LOS MISMOS , los datos se pueblen en alumno
-	public ResponseEntity<?> crear(@RequestBody E entity){
+	public ResponseEntity<?> crear(@Validated @RequestBody E entity, BindingResult result){
+		//VALIDA SI HAY ERRORES
+		if(result.hasErrors()) {
+			return this.validar(result);
+		}
+		
 		//lo que retorna
 		E entityDb = service.save(entity);
 		//status tipo created 201, 
@@ -90,4 +99,14 @@ public class CommonController <E, S extends CommonService<E>>{
 		
 	}
 	
+	//VALIDACIONES
+	protected ResponseEntity<?> validar(BindingResult result){
+		Map<String, Object> errores = new HashMap<>();
+		//RECORRER CADA MENSAJE DE ERRROR
+		result.getFieldErrors().forEach(err -> {
+			//DETECTA EL CAMPO Y DICE DONDE ESTA EL ERROR 
+			errores.put(err.getField(), "El campo "+err.getField()+ " "+err.getDefaultMessage());
+		});
+		return ResponseEntity.badRequest().body(errores);
+	}
 }

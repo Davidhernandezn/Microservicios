@@ -2,6 +2,9 @@ package com.microservicios.commons.alumnos.models.entity;
 
 import java.util.Date;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
 
 
 //persistencia mapeada a una tabla
@@ -16,9 +19,17 @@ public class Alumno {
 	//PARA POSGREST, identity, sequence,
 	@javax.persistence.GeneratedValue (strategy = javax.persistence.GenerationType.IDENTITY)
 	private Long id;
+	
+	//REGLAS DE VALIDATION
 	//NO ES NECESARIO AGREGAR @COLUM YA QUE SE LLAMA IGUAL, SOLO SI QUEREMOS CONFIGURAR PARAMETROS VARCAHR SIZE, ETC
+	@NotEmpty //QUE NO SEA VACIO
 	private String nombre;
+	
+	@NotEmpty
 	private String apellido;
+	
+	@NotEmpty
+	@Email
 	private String email;
 	
 	@javax.persistence.Column(name = "create_at") //asi se separa en sql o bd

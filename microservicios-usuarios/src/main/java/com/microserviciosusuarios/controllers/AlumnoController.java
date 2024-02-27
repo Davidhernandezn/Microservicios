@@ -1,7 +1,11 @@
 package com.microserviciosusuarios.controllers;
 import java.util.Optional;
+
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -26,8 +30,14 @@ public class AlumnoController extends CommonController<Alumno, AlumnoService> {
 	//AGREGAMOS RUTA YA QUE NO ESTA EN LA RAIZ
 	@PutMapping("/{id}") //PASAMOS EL ID 
 	//METODO PARA CAPTURAR PARAMETRO ID Y EL alumno QUE QUEREMOS GUARDAR
-	public ResponseEntity<?> editar(@RequestBody Alumno alumno, @PathVariable Long id){
-	
+	public ResponseEntity<?> editar(@Valid @RequestBody Alumno alumno, BindingResult result, @PathVariable Long id){
+		
+		//VALIDA SI HAY ERRORES
+		if(result.hasErrors()) {
+			return this.validar(result);
+		}
+		
+		
 		//BUSCAMOS ALUMNO POR ID Y MODIFICAMOS LOS DATOS EL ALUMNO CON LOS DATOS DEL JSON 
 		Optional<Alumno> o = service.findById(id);
 		

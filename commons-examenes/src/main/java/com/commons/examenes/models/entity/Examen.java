@@ -17,6 +17,9 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 //IMPORTAL MANUALMENTE YA QUE SE IMPORTA CON SPRING WEB 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -33,6 +36,8 @@ public class Examen {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotEmpty
+	@Size(min = 4, max = 8)
 	private String nombre;
 	
 	@Temporal(TemporalType.TIMESTAMP)
@@ -65,7 +70,10 @@ public class Examen {
 	 *NO NECESITAMOS SABER QUE EXAMENES PERTENECEN A LA ASIGNATURA
 	 *PERO SI QUE DE QUE ASIGNATURA HAY EXAMEN - RELACION INVERSA DEPENDE DEL REQUERIMENTO . AQUI NO NECESARIO
 	 * */
+	//AL SER UN OBJETO NO PODEMOS VALIDARLO COMO EMPTY SI NO COMO NULL
+	
 	@ManyToOne(fetch = FetchType.LAZY)
+	@NotNull
 	private Asignatura asignatura;
 	
 	
