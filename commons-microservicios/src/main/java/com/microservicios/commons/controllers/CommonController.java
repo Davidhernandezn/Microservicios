@@ -65,6 +65,7 @@ public class CommonController <E, S extends CommonService<E>>{
 	//INDICAR DE DONDE VIENE EL DATO QUE DEBEMOS PERSISTIR, HACER CONSULTAS
 	//EL JSON SE POBLA EN ALUMNO, SI SON LOS MISMOS , los datos se pueblen en alumno
 	public ResponseEntity<?> crear(@Validated @RequestBody E entity, BindingResult result){
+		//@RequestBody ENVIA JSON CON LOS DATOS. PERO PARA LOS ARCHIVOS ENVIAMOS PARAMETROS
 		//VALIDA SI HAY ERRORES
 		if(result.hasErrors()) {
 			return this.validar(result);

@@ -1,4 +1,5 @@
 package com.microserviciosusuarios.controllers;
+import java.io.IOException;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -8,9 +9,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.microservicios.commons.alumnos.models.entity.Alumno;
 import com.microservicios.commons.controllers.CommonController;
@@ -67,8 +71,63 @@ public class AlumnoController extends CommonController<Alumno, AlumnoService> {
 	public ResponseEntity<?> filtrar(@PathVariable  String termino){
 		return ResponseEntity.ok(service.findByNombreOrApellido(termino));//mandamos services y el parametro
 	}
+
+
+//CARAGA DE IMAGEN O ARCHIVOS
+	//@Override SE ELIMINAR POR QUE CAMBIA EL NOMBRE DEL METODO
+	@PostMapping("/crear-con-foto")
+	//NO ENVIAMOS EL //@RequestBody ENVIA JSON CON LOS DATOS. PERO PARA LOS ARCHIVOS ENVIAMOS PARAMETROS MultipartFile
+	public ResponseEntity<?> crearConFoto(Alumno alumno, BindingResult result, 
+			@RequestParam MultipartFile archivo) throws IOException {
+		// VALIDAMOS QUE VENGA EL ARCHIVO
+		if(!archivo.isEmpty()) {
+			//asignamos al alumno y pasamos los bytes
+			alumno.setFoto(archivo.getBytes());
+		}
+		return super.crear(alumno, result);
+	}
 	
 	
+	
+	//AGREGAMOS EDITAR CON FOTO RUTA YA QUE NO ESTA EN LA RAIZ
+		@PutMapping("/editar-con-foto/{id}") //PASAMOS EL ID 
+		//METODO PARA CAPTURAR PARAMETRO ID Y EL alumno QUE QUEREMOS GUARDAR
+		public ResponseEntity<?> editarConFoto(@Valid Alumno alumno, BindingResult result, @PathVariable Long id, 
+				@RequestParam MultipartFile archivo) throws IOException{
+			
+			//VALIDA SI HAY ERRORES
+			if(result.hasErrors()) {
+				return this.validar(result);
+			}
+			
+			
+			//BUSCAMOS ALUMNO POR ID Y MODIFICAMOS LOS DATOS EL ALUMNO CON LOS DATOS DEL JSON 
+			Optional<Alumno> o = service.findById(id);
+			
+			//VALIDAR SI EXIXTE
+			if(o.isEmpty()) {
+				//SI ESTA VACIO
+				return ResponseEntity.notFound().build();//CONSTRUYE RESPUESTA DEL VACIO
+			}
+			
+			//SI EXISTE LO AGREGAMOS
+			Alumno alumnoDb = o.get(); //OBTENEMOS ALUMNO
+			//SOLO MANDAR LO QUE QUEREMOS CAMBIAR
+			alumnoDb.setNombre(alumno.getNombre());
+			alumnoDb.setApellido(alumno.getApellido());
+			alumnoDb.setEmail(alumno.getEmail());
+			//MANTENER FECHA DE CREACION EL SISTEMA LO MANEJA SOLO
+			
+			// VALIDAMOS QUE VENGA EL ARCHIVO
+			if(!archivo.isEmpty()) {
+				//asignamos al alumno y pasamos los bytes
+				alumnoDb.setFoto(archivo.getBytes());
+			}
+			
+			//ANTES DE PASARLO AL BODY LO DEBEMOS GUARDAR Y PERSISTIR
+			return ResponseEntity.status(HttpStatus.CREATED).body(service.save(alumnoDb));
+		}
+		
 	
 	
 }
