@@ -2,10 +2,11 @@ package com.microservicios.commons.alumnos.models.entity;
 
 import java.util.Date;
 
+import javax.persistence.Lob;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 //persistencia mapeada a una tabla
 @javax.persistence.Entity
@@ -35,9 +36,24 @@ public class Alumno {
 	@javax.persistence.Column(name = "create_at") //asi se separa en sql o bd
 	@javax.persistence.Temporal(javax.persistence.TemporalType.TIMESTAMP)//FECHA COMPLETA Y HORA
 	private Date createAt;//import java util
+	
+	//PARA CARGAR IMAGENES U OTROS ARCHIVOS- agregar get and set
+	/*NO DEBEMOS INCLUIR EN EL JSON SOLO PARA PERSISTIRLO, ES GRANDE */
+	@Lob
+	@JsonIgnore //JACKSON
+	private byte[] foto;
+		
+	
 	@javax.persistence.PrePersist
 	public void prePersist() {
-		this.createAt = new Date();
+	this.createAt = new Date();
+	}
+	
+	/*CARGA DE FOTO O ARCHIVOS - angular
+	 * genera hash que tiene identidicador*/
+	public Integer getFotoHashCode() {
+		//VALIDAR SI EXISTE, SI ES DISTINTO DE NULL, RETIRNAMOS EL HASCODE Y SI NO ESTA SERÁ NULL
+		return (this.foto != null) ? this.foto.hashCode():null; 
 	}
 	
 	public Long getId() {
@@ -100,6 +116,14 @@ public class Alumno {
 		//SI CUMPLE LO ELIMINA
 		return this.id != null && this.id.equals(a.getId());
 	}
-	
 
+	//PARA CARGAR ARCHIVOS
+	public byte[] getFoto() {
+		return foto;
+	}
+
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
+	}
+	
 }
