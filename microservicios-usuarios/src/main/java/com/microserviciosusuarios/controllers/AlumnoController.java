@@ -4,7 +4,10 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +29,30 @@ import com.microserviciosusuarios.services.AlumnoService;
 //E = GENERICO (ALUMNO)
 //AlumnoService MANDAR EL SERVICIO SIN EL TIPO
 public class AlumnoController extends CommonController<Alumno, AlumnoService> {
+	
+	//VER IMAGEN
+	@GetMapping("/uploads/img/{id}")
+	public ResponseEntity<?> verFoto(@PathVariable Long id){
+		//BUSCAMOS ALUMNO POR ID Y MODIFICAMOS LOS DATOS EL ALUMNO CON LOS DATOS DEL JSON 
+		Optional<Alumno> o = service.findById(id);
+		
+		//VALIDAR SI EXIXTE y si hay foto null
+		if(o.isEmpty() || o.get().getFoto() == null) {
+			//SI ESTA VACIO
+			return ResponseEntity.notFound().build();//CONSTRUYE RESPUESTA DEL VACIO
+		}
+		
+		//PASAR FOTO A LA RESPUESTA - RECURSO DE SPRING
+		//importar de spring core
+		Resource imagen = new ByteArrayResource(o.get().getFoto());
+
+		//RETORNAMOS 
+		return ResponseEntity.ok()
+				.contentType(MediaType.IMAGE_JPEG)
+				.body(imagen);
+	}
+	
+	
 	
 	//ESTO YA ESTA INDICADO EN EL GENERAL
 	//@Autowired //
