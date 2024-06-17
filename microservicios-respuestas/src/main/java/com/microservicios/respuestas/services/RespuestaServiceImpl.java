@@ -14,8 +14,13 @@ public class RespuestaServiceImpl implements RespuestaService {
 	@Override
 	@Transactional //DE SPRING FRAMEWORK
 	public Iterable<Respuesta> saveAll(Iterable<Respuesta> respuestas) {
-		// TODO Auto-generated method stub
 		return repository.saveAll(respuestas);
+	}
+	
+	@Override
+	@Transactional(readOnly = true) //DE SPRING FRAMEWORK - SOLO DE CONSULTA
+	public Iterable<Respuesta> findRespuestaByAlumnoByExamen(Long alumnoId, Long examenId) {
+		return findRespuestaByAlumnoByExamen(alumnoId, examenId);//EL QUERY IMPLEMENTADO AHORA LO LLAMAMOS
 	}
 
 }
