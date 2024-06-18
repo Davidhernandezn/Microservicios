@@ -17,6 +17,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -76,7 +77,8 @@ public class Examen {
 	@NotNull
 	private Asignatura asignatura;
 	
-	
+	@Transient //NO PERSISTE LA BD
+	private boolean respondido;
 	
 	public Examen() {
 		//inicializamos array list
@@ -182,6 +184,16 @@ public class Examen {
 			//SI CUMPLE LO ELIMINA
 			return this.id != null && this.id.equals(a.getId());
 	}
+
+	//EN VEZ DE GET IS POR SER BOOLEANA
+	public boolean isRespondido() {
+		return respondido;
+	}
+
+	public void setRespondido(boolean respondido) {
+		this.respondido = respondido;
+	}
+	
 	
 	
 }

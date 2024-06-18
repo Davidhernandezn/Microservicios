@@ -25,7 +25,7 @@ import com.microservicios.cursos.services.CursoService;
 public class CursoController extends CommonController<Curso, CursoService> {
 	
 	@PutMapping("/{id}")
-	//? = generico que devolvera curso, 
+	//? =   que devolvera curso, 
 	public ResponseEntity<?> editar(@Valid @RequestBody Curso curso, BindingResult result, @PathVariable Long id){
 		//VALIDA SI HAY ERRORES
 		if(result.hasErrors()) {
@@ -96,6 +96,9 @@ public class CursoController extends CommonController<Curso, CursoService> {
 	
 	
 	//OBTENER CURSOS DE ALUMNO
+	//CURSO TIENE RELACION MUCHOS A MUCHOS CON LOS EXAMENNES, HAY QUE ITERAR CUAL EXAMEN FUE RESPONDIDO
+	//CONSULTAR TODOS LOS EXAMENES Y DESPUES ITERAR POR CADA
+	//ATRIBUTO EN EXAMEN PARA INDICAR SI FUE RESPONDIDO (NO PUEDE SER APLICADO A EXAMEN PARA APLICAR SOLO UN ALUMNO, *un atributi que no debe mapearse*
 	@GetMapping("/alumno/{id}")
 	public ResponseEntity<?> buscarPorAlumnoId(@PathVariable Long id){
 		Curso curso = service.findCursoByAlumnoId(id);
