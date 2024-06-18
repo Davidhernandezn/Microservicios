@@ -8,5 +8,6 @@ public interface RespuestaService {
 	
 	public Iterable<Respuesta> findRespuestaByAlumnoByExamen(Long alumnoId, Long examenId);//AL SER COPEDAO SOLICITARA IMPLEMENTAR METODO
 
-		
+	public Iterable<Long> findExamenesIdsConRespuestasByAlumno(Long alumnoId); //PEGAR DESDE RESPOSITORY
+
 }

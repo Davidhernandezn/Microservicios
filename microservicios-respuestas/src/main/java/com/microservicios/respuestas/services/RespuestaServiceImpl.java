@@ -23,4 +23,11 @@ public class RespuestaServiceImpl implements RespuestaService {
 		return findRespuestaByAlumnoByExamen(alumnoId, examenId);//EL QUERY IMPLEMENTADO AHORA LO LLAMAMOS
 	}
 
+	@Override
+	@Transactional(readOnly = true) //DE SPRING FRAMEWORK - SOLO DE CONSULTA
+	public Iterable<Long> findExamenesIdsConRespuestasByAlumno(Long alumnoId) {
+		/*MICROSERVICIO CURSO SE COMUNICARA CON EL API PARA OBTENER LA LISTA ITERABLE CON LOS ID DE EXAMENES RESPONDIDOS*/
+		return repository.findExamenesIdsConRespuestasByAlumno(alumnoId);
+	}
+
 }
