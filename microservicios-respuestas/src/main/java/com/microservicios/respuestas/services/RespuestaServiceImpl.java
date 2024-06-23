@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.microservicios.respuestas.models.entity.Respuesta;
 import com.microservicios.respuestas.models.repository.RespuestaRepository;
+
 @Service//PARA REGISTRARLO COMO COMPONENTE DE SPRING
 public class RespuestaServiceImpl implements RespuestaService {
 	

@@ -69,7 +69,7 @@ esto se habilita de forma automatica pero es mejor habilitarlo de manera
 		<!--PARA MANEJAR LOS MICROSERVICIOS DE MANERA GENERAL-->
 		<dependency>
 			<groupId>com.microservicios.commons</groupId>
-			<artifactId>commons-microservicios</artifactId>
+			<artifactId>commons-microservicios</artifactId> 
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<!--PARA ENTIDAD ALUMNO-->

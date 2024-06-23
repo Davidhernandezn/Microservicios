@@ -13,7 +13,6 @@ import com.microservicios.respuestas.models.entity.Respuesta;
 import com.microservicios.respuestas.services.RespuestaService;
 
 @RestController
-
 public class RespuestaController {
 
 	//PARA GUARDAR RESPUESTAS
