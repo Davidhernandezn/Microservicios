@@ -21,7 +21,7 @@ public class RespuestaServiceImpl implements RespuestaService {
 	@Override
 	@Transactional(readOnly = true) //DE SPRING FRAMEWORK - SOLO DE CONSULTA
 	public Iterable<Respuesta> findRespuestaByAlumnoByExamen(Long alumnoId, Long examenId) {
-		return findRespuestaByAlumnoByExamen(alumnoId, examenId);//EL QUERY IMPLEMENTADO AHORA LO LLAMAMOS
+		return repository.findRespuestaByAlumnoByExamen(alumnoId, examenId);//EL QUERY IMPLEMENTADO AHORA LO LLAMAMOS
 	}
 
 	@Override

@@ -20,6 +20,7 @@ public class RespuestaController {
 	private RespuestaService service;
 	
 	@PostMapping
+	/*NECESITAMOS ENVIAR LISTA Y ARREGLO DE RESPUESTAS*/
 	public ResponseEntity<?> crear(@RequestBody Iterable<Respuesta> respuestas){
 		Iterable<Respuesta> respuestasDB = service.saveAll(respuestas);
 		return ResponseEntity.status(HttpStatus.CREATED).body(respuestasDB);
