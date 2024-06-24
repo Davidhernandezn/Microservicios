@@ -7,4 +7,6 @@ public interface CursoService extends CommonService<Curso> {
 	//METODO PERZONALIZADO DE REPOSITORY	
 	public Curso findCursoByAlumnoId(Long id);	
 
+	//VIENE DE RESPUESTA FEIGNCLIENT
+	public Iterable<Long> obtenerExamenesIdsConRespuestaAlumno(Long alumnoId);
 }

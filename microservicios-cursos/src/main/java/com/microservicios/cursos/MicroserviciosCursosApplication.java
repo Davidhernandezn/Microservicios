@@ -3,8 +3,10 @@ package com.microservicios.cursos;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 //@EnableEurekaClient //OPCIONAL
+@EnableFeignClients //IMPORTAR HABILITAR PARA OBTENER EXAMENES RESPONDIDOS
 @SpringBootApplication
 //TAMBIEN EN SU CLASE PRINCIPAL AGREGARLE ENTITY SCAN DE LA ENTIDAD DESEADA
 /*
@@ -20,5 +22,4 @@ public class MicroserviciosCursosApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MicroserviciosCursosApplication.class, args);
 	}
-
 }

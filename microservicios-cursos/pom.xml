@@ -69,6 +69,14 @@
 			<artifactId>commons-alumnos</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+
+		<!--
+		https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-openfeign-core -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-openfeign-core</artifactId>
+			</dependency>
+
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>

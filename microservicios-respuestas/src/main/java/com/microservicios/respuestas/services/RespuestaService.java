@@ -1,5 +1,4 @@
 package com.microservicios.respuestas.services;
-
 import com.microservicios.respuestas.models.entity.Respuesta;
 
 public interface RespuestaService {
@@ -9,5 +8,8 @@ public interface RespuestaService {
 	public Iterable<Respuesta> findRespuestaByAlumnoByExamen(Long alumnoId, Long examenId);//AL SER COPEDAO SOLICITARA IMPLEMENTAR METODO
 
 	public Iterable<Long> findExamenesIdsConRespuestasByAlumno(Long alumnoId); //PEGAR DESDE RESPOSITORY
+	
+
+
 
 }
