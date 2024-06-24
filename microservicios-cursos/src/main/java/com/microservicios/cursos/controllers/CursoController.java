@@ -1,6 +1,7 @@
 package com.microservicios.cursos.controllers;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -102,6 +103,22 @@ public class CursoController extends CommonController<Curso, CursoService> {
 	@GetMapping("/alumno/{id}")
 	public ResponseEntity<?> buscarPorAlumnoId(@PathVariable Long id){
 		Curso curso = service.findCursoByAlumnoId(id);
+		
+		//AGREGAREMOS LA COMUNICACION DE LOS MICROSERVICIOS USANDO FAIN
+		//VALIDAR QUE CURSO SEA DISTINTO DE NULL
+		if(curso != null) {
+			//ITERAR SOBRE LOS EXAMENES PARA VERSI ESTAN RESPONDIDOS
+			List<Long> examenesIds = (List<Long>) service.obtenerExamenesIdsConRespuestaAlumno(id);//RETORNA UN ITERABLE PERO LO CONVERTIMOS A LIST
+			
+			//STREAM PARA FLUJOS Y PROGRAMACION FUNCIONAL, (MANIPULAR LISTAS, FLUJOS, ETC)
+			List<Examen> examenes = curso.getExamenes().stream().map(examen -> {
+				if (examenesIds.contains(examen.getId())) {
+					examen.setRespondido(true);
+				}
+				return examen; //SIEMPRE RETORNA STREM POR LO QUE DEBE REGRESARLO COMO DECEAS
+			}).collect(Collectors.toList());//LISTA
+			curso.setExamenes(examenes);//PASAMOS EXAMENES
+		}
 		return ResponseEntity.ok(curso);
 	}
 	
