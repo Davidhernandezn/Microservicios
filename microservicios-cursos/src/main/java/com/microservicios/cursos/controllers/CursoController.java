@@ -26,8 +26,10 @@ import com.microservicios.cursos.services.CursoService;
 public class CursoController extends CommonController<Curso, CursoService> {
 
 	//CON LO QUE TESTEAREMOS EL BALANCEO DE CARGAS,  config.balanceador.test ES VARIABLE DE ENTORNO EN PROPERTIES
-	@Value("{$config.balanceador.test}")
+
+	@Value("${config.balanceador.test}")
 	private String balanceadorTest;
+
 	
 	@PutMapping("/{id}")
 	//? =   que devolvera curso, 
