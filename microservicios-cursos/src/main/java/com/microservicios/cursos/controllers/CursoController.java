@@ -1,10 +1,11 @@
 package com.microservicios.cursos.controllers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
-
 import javax.validation.Valid;
-
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.commons.examenes.models.entity.Examen;
 import com.microservicios.commons.alumnos.models.entity.Alumno;
 import com.microservicios.commons.controllers.CommonController;
@@ -24,6 +24,10 @@ import com.microservicios.cursos.services.CursoService;
 //EXTENDEMOS AL COMMON CONTROLLER Y AGREGAMOS ENTIDAD Y A NUESTRO SERVICE CREADO SIN TIPO
 @RestController
 public class CursoController extends CommonController<Curso, CursoService> {
+
+	//CON LO QUE TESTEAREMOS EL BALANCEO DE CARGAS,  config.balanceador.test ES VARIABLE DE ENTORNO EN PROPERTIES
+	@Value("{$config.balanceador.test}")
+	private String balanceadorTest;
 	
 	@PutMapping("/{id}")
 	//? =   que devolvera curso, 
@@ -167,4 +171,17 @@ public class CursoController extends CommonController<Curso, CursoService> {
 			//GUARDAR EL CURSO CON LOS ALUMNOS ASIGNADOS
 			return ResponseEntity.status(HttpStatus.CREATED).body(this.service.save(dbCurso));
 		}
+
+		//Balanceo de cargas
+		@GetMapping("/balanceador-test")
+		public ResponseEntity<?> listar() {
+			//PASAR VALOR DE LA CONSTANTE, INTECTAR PARA TESTEAR EL BALANCEO DE CARGA
+			Map<String, Object> response = new HashMap<String, Object>(); //TIPO DEL PARAMETRO Y VALOR = RESPUESTA
+			response.put("Balanceador", balanceadorTest);
+			//AGREGAR LISTADO
+			response.put("Cursos", service.findAll());			
+			return ResponseEntity.ok(response);
+		}
+		
+		
 }
